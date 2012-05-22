@@ -13,7 +13,7 @@ class Cassandra
     include ::Cassandra::Helpers
     include ::Cassandra::Columns
 
-    attr_reader :keyspace
+    attr_reader :keyspace, :servers, :thrift_client_options
 
     def initialize(keyspace, schema)
       @is_super = {}
@@ -21,6 +21,8 @@ class Cassandra
       @column_name_class = {}
       @sub_column_name_class = {}
       @indexes = {}
+      @servers = {}
+      @thrift_client_options = {}
       @schema = schema[keyspace]
       clear_keyspace!
     end
